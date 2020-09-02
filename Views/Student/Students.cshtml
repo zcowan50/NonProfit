@@ -1,0 +1,53 @@
+@model List<Student>
+
+<div class="container">
+    <h2 class="text-center">All Students</h2>
+    <a class="btn btn-primary mb-3" asp-action="NewStudent" asp-controller="Student">New Student</a>
+        <div class="overflow-auto">
+        <div class="table-responsive-sm border rounded">
+                <table class="table">
+                <thead class="thead-light">
+                    <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">First Name</th>
+                    <th scope="col">Last Name</th>
+                    <th scope="col">Age</th>
+                    <th scope="col">Grade</th>
+                    <th scope="col">High School</th>
+                    <th scope="col">Location</th>
+                    <th scope="col">Mentor</th>
+                    <th scope="col">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (Student stu in Model)
+                    {
+                        
+                    <tr>
+                    
+                    <th scope="row"><a asp-action="StudentDetails" asp-controller="Student" asp-route-studentId="@stu.StudentId"> @stu.StudentId </a></th>
+                    <td><a class="text-dark" asp-action="StudentDetails" asp-controller="Student" asp-route-studentId="@stu.StudentId">@stu.FirstName</a></td>
+                    <td>@stu.LastName</td>
+                    <td>@stu.Age</td>
+                    <td>@stu.Grade</td>
+                    <td>@stu.HighSchool</td>
+                    <td>@stu.Location</td>
+                    <td>
+                        <a asp-controller="Volunteer" asp-action="VolunteerDetails" asp-route-volunteerId="@stu.Mentor.VolunteerId">@stu.Mentor.FirstName @stu.Mentor.LastName</a>
+                    </td>
+                    <td>
+                        <a asp-action="StudentDetails" asp-controller="Student" asp-route-studentId="@stu.StudentId" class="btn btn-info">Details</a>
+                        <form class="d-inline-block" asp-action="Delete" asp-controller="Student" asp-route-studentId="@stu.StudentId">
+                        <button class="btn btn-danger">Delete</button>
+                        </form>
+                    </td>
+                    
+                    </tr>
+                    
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <a asp-action="UnassignedStudents" asp-controller="Student">See All Unassigned Students</a>
+</div>

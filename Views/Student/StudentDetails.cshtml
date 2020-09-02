@@ -1,0 +1,72 @@
+@model Student
+<div class="container">
+    <div class="row mb-2 p-3 border" >
+        <div class="col-md-6">
+            <h3>@Model.FirstName @Model.LastName</h3>
+            <h5 class="mb-3">Grade: @Model.Grade</h5>
+            <h5>@Model.HighSchool</h5>
+            <h6 class="mb-3">Mentor: <a asp-action="VolunteerDetails" asp-route-volunteerId="@Model.Mentor.VolunteerId" asp-controller="Volunteer">@Model.Mentor.FirstName @Model.Mentor.LastName</a></h6>
+            <a class="btn btn-info mb-4" asp-action="Edit" asp-controller="Student">Edit Student</a>
+    <form asp-action="AssignVolunteer" asp-controller="Student" asp-route-studentId="@Model.StudentId" >
+                        <select id="selectTest" class="form-control" name="volunteerId">
+                            @foreach (Volunteer vol in ViewBag.Volunteers)
+                            {
+                                <option value="@vol.VolunteerId">@vol.FirstName @vol.LastName</option>
+                            }
+                        </select>
+                        <button class="btn btn-success mt-3">Assign Volunteer</button>
+    </form>
+        </div>
+        <div class="col-md-6 text-right">
+            <h4>Contact Information:</h4>
+            <p>@Model.PhoneNumber</p>
+            <p>@Model.HomeAddress</p>
+            @if(@Model.FacebookName != null)
+            {
+                <p>FaceBook Name: @Model.FacebookName</p>
+            }
+            @if(@Model.InstagramName != null)
+            {
+                <p>Instagram Name: @Model.InstagramName</p>
+            }
+            <h5>@Model.LivingSituation</h5>
+            @if(Model.LivingSituation == "Living with Father")
+            {
+                <p>@Model.FatherFirstName @Model.FatherLastName</p>
+                <p>@Model.FatherPhoneNumber</p>
+            }
+            @if(Model.LivingSituation == "Living with Mother")
+            {
+                <p>@Model.MotherFirstName @Model.MotherLastName</p>
+                <p>@Model.MotherPhoneNumber</p>
+            }
+            @if(Model.LivingSituation == "Living with Mother & Father")
+            {
+                <p>Father: @Model.FatherFirstName @Model.FatherLastName</p>
+                <p>Mother: @Model.MotherFirstName @Model.MotherLastName</p>
+                <p>@Model.MotherPhoneNumber</p>
+            }
+            else
+            {
+                <p>@Model.GuardianFirstName @Model.GuardianLastName</p>
+                <p>@Model.GuardianPhoneNumber</p>
+            }
+            
+        </div>
+        </div>
+        
+            <div class="row mt-3">
+                <div class="col-md-6">
+                    <h4>Mentor Hours:</h4>
+                    @foreach (Time time in Model.TimeWithMentor)
+                    {
+                        <p class="mb-1">@time.TimeSpent @(time.TimeSpent > 1 ? "Hrs" : "Hr") - <a asp-controller="Volunteer" asp-action="VolunteerDetails" asp-route-volunteerId="@time.Mentor.VolunteerId"> @time.Mentor.FirstName @time.Mentor.LastName </a><small>On: @time.TimeOnDate.ToString("d")</small></p>
+                    }
+                </div>
+                <div class="col-md-6">
+                    <h4>Notes:</h4>
+                    <p>@Model.Notes</p>
+                </div>
+            </div>
+    </div>
+</div>

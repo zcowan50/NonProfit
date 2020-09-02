@@ -1,0 +1,86 @@
+@model List<Volunteer>
+    @{
+            int volCount = 0;
+            double stuCount = 0;
+            double stuWMentor= 0;
+            double volWstu = 0;
+            int TotalTime = 0;
+            double sum = 0;
+            var sevenDaysPrior = DateTime.Today.AddDays(-7);
+            int TimeInLast7 = 0;
+            
+        @foreach (Volunteer vol in Model)
+        {
+            {
+                if(vol.VolunteerId != 4)
+                {
+                    volCount += 1 ;
+                }
+                if(vol.VolunteerId != 4)
+                {
+                    if(vol.Students.Count > 0)
+                    {
+                        volWstu += 1;
+                    }
+                }
+            }
+        }
+
+        @foreach (Time time in ViewBag.Time)
+        {
+            {
+                TotalTime += time.TimeSpent ;
+            }
+            if(time.TimeOnDate > sevenDaysPrior && time.TimeOnDate < DateTime.Now)
+            {
+                TimeInLast7 += time.TimeSpent;
+            }
+        }
+        @foreach (Student stu in ViewBag.Students)
+        {
+            if(stu.FirstName != null)
+            {
+                stuCount += 1;
+            }
+            if(stu.VolunteerId != 4)
+            {
+                stuWMentor += 1;
+            }
+            sum += @stu.Age;
+            
+        
+        }
+<div class="container">
+        <h4 class="mb-2">Welcome @Context.Session.GetString("UserName")</h4>
+    <div class="border p-4">
+        <h3 class="mb-3 text-center">Statistics</h3>
+        <hr/>
+        <div class="row">
+            <div class="col-md-8">
+                <p>Number of Volunteers: <h5 class="font-weight-bold">@volCount</h5> </p>
+                <p>Percentage of Volunteers that mentor at least one Student: <h5 class="font-weight-bold">@Math.Round((volWstu/volCount) * 100)%</h5></p>
+                <p>Total Mentor Hours: <h5 class="font-weight-bold">@TotalTime Hours</h5></p>
+                <p>Mentor Hours in the Last 7 Days: <h5 class="mb-4 font-weight-bold">@TimeInLast7 @(TimeInLast7 != 1 ? "Hours" : "Hour")</h5></p>
+                <a asp-action="Volunteers" asp-controller="Volunteer"><h5>View All Volunteers</h5></a>
+            </div>
+            
+            <div class="col-md-4">
+                <p>Number of Students: <h5 class="font-weight-bold">@stuCount</h5>  </p>
+                <p>Percentage of Students that have a Mentor: <h5 class="font-weight-bold">@Math.Round((stuWMentor/stuCount) * 100)%</h5></p>
+                <p>Students Without a Mentor: <h5 class="font-weight-bold">@(stuCount-stuWMentor)</h5></p>
+                <p>Average Age of Students: <h5 class="mb-4 font-weight-bold">@Math.Round((sum/stuCount))</h5></p>
+                <a asp-action="Students" asp-controller="Student"><h5>View All Students</h5></a>
+            </div>
+        </div>
+    </div>
+        <div class="row">
+            <div class="col-md-8 mt-3">
+                <a class="btn btn-primary" asp-action="NewVolunteer" asp-controller="Volunteer">New Volunteer</a>
+            </div>
+            <div class="col-md-4 mt-3">
+                
+                <a class="btn btn-primary" asp-action="NewStudent" asp-controller="Student">New Student</a>
+            </div>
+        </div>
+</div>
+    }

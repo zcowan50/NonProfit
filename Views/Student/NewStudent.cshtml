@@ -1,0 +1,162 @@
+@model Student
+<div class="container">
+    <h3>New Student</h3>
+    <form asp-controller="Student" class="shadow p-3 mb-5 rounded" asp-action="CreateStudent" method="POST">
+        <div class="form-row">
+            <div class="form-group col-md-5">
+                <label asp-for="FirstName"></label>
+                <span asp-validation-for="FirstName" class="text-danger font-weight-bold">
+                </span>
+                <input placeholder="John" class="form-control" asp-for="FirstName">
+            </div>
+            <div class="form-group col-md-5">
+                <label asp-for="LastName"></label>
+                <span asp-validation-for="LastName" class="text-danger font-weight-bold">
+                </span>
+                <input placeholder="Smith" class="form-control" asp-for="LastName">
+            </div>
+            <div class="form-group col-md-2">
+                <label asp-for="Age"></label>
+                <span asp-validation-for="Age" class="text-danger font-weight-bold">
+                </span>
+                <input type="number" class="form-control" asp-for="Age">
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-5">
+                <label asp-for="PhoneNumber"></label>
+                <span asp-validation-for="PhoneNumber" class="text-danger font-weight-bold">
+                </span> 
+                <input class="form-control" asp-for="PhoneNumber">
+            </div>
+            <div class="form-group col-md-5">
+                <label asp-for="HighSchool"></label>
+                <span asp-validation-for="HighSchool" class="text-danger font-weight-bold">
+                </span> 
+                <input class="form-control" asp-for="HighSchool">
+            </div>
+            <div class="form-group col-md-2">
+                <label asp-for="Grade"></label>
+                <span asp-validation-for="Grade" class="text-danger font-weight-bold">
+                </span> 
+                <select class="form-control" asp-for="Grade">
+                    <option value="">Select a Grade</option>
+                    <option value="9th">9th</option>
+                    <option value="10th">10th</option>
+                    <option value="11th">11th</option>
+                    <option value="12th">12th</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md 4">
+                <label asp-for="FacebookName"></label>
+                <span asp-validation-for="FacebookName" class="text-danger font-weight-bold">
+                </span> 
+                <input class="form-control" asp-for="FacebookName">
+            </div>
+            <div class="form-group col-md 4">
+                <label asp-for="InstagramName"></label>
+                <span asp-validation-for="InstagramName" class="text-danger font-weight-bold">
+                </span> 
+                <input class="form-control" asp-for="InstagramName">
+            </div>
+            <div class="form-group col-md-4">
+                <label asp-for="LivingSituation"></label>
+                <span asp-validation-for="LivingSituation" class="text-danger font-weight-bold">
+                </span>
+                <select class="form-control" asp-for="LivingSituation">
+                    <option value="">Select an Option</option>
+                    <option value="Living with Father">Living with Father</option>
+                    <option value="Living with Mother">Living with Mother</option>
+                    <option value="Living with Mother & Father">Living with Mother & Father</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                <label asp-for="FatherFirstName"></label>
+                <span asp-validation-for="FatherFirstName" class="text-danger font-weight-bold">
+                </span>
+                <input placeholder="John" class="form-control" asp-for="FatherFirstName">
+            </div>
+            <div class="form-group col-md-4">
+                <label asp-for="FatherLastName"></label>
+                <span asp-validation-for="FatherLastName" class="text-danger font-weight-bold">
+                </span>
+                <input placeholder="Smith" class="form-control" asp-for="FatherLastName">
+            </div>
+            <div class="form-group col-md-4">
+                <label asp-for="FatherPhoneNumber"></label>
+                <span asp-validation-for="FatherPhoneNumber" class="text-danger font-weight-bold">
+                </span> 
+                <input placeholder="555-555-5555" class="form-control" asp-for="FatherPhoneNumber">
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                <label asp-for="MotherFirstName"></label>
+                <span asp-validation-for="MotherFirstName" class="text-danger font-weight-bold">
+                </span>
+                <input placeholder="Jane" class="form-control" asp-for="MotherFirstName">
+            </div>
+            <div class="form-group col-md-4">
+                <label asp-for="MotherLastName"></label>
+                <span asp-validation-for="MotherLastName" class="text-danger font-weight-bold">
+                </span>
+                <input placeholder="Smith" class="form-control" asp-for="MotherLastName">
+            </div>
+            <div class="form-group col-md-4">
+                <label asp-for="MotherPhoneNumber"></label>
+                <span asp-validation-for="MotherPhoneNumber" class="text-danger font-weight-bold">
+                </span> 
+                <input placeholder="555-555-5555" class="form-control" asp-for="MotherPhoneNumber">
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                <label asp-for="GuardianFirstName"></label>
+                <span asp-validation-for="GuardianFirstName" class="text-danger font-weight-bold">
+                </span>
+                <input placeholder="John" class="form-control" asp-for="GuardianFirstName">
+            </div>
+            <div class="form-group col-md-4">
+                <label asp-for="GuardianLastName"></label>
+                <span asp-validation-for="GuardianLastName" class="text-danger font-weight-bold">
+                </span>
+                <input placeholder="Smith" class="form-control" asp-for="GuardianLastName">
+            </div>
+            <div class="form-group col-md-4">
+                <label asp-for="GuardianPhoneNumber"></label>
+                <span asp-validation-for="GuardianPhoneNumber" class="text-danger font-weight-bold">
+                </span> 
+                <input placeholder="555-555-5555" class="form-control" asp-for="GuardianPhoneNumber">
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-8">
+                <label asp-for="HomeAddress"></label>
+                <span asp-validation-for="HomeAddress" class="text-danger font-weight-bold">
+                </span>
+                <input class="form-control" asp-for="HomeAddress" />
+            </div>
+            <div class="form-group col-md-4">
+                <label asp-for="Location"></label>
+                <span asp-validation-for="Location" class="text-danger font-weight-bold">
+                </span>
+                <select class="form-control" asp-for="Location">
+                    <option value="">Select a Location</option>
+                    <option value="Moody">Moody</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-row">
+            <label asp-for="Notes"></label>
+            <textarea class="form-group col-md-12" style=""  asp-for="Notes" cols="80" rows="5"></textarea>
+        </div>
+
+
+        <button class="btn btn-info">Create</button>
+    </form>
+</div>
